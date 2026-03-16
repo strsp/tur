@@ -6,6 +6,7 @@ TERMUX_PKG_VERSION=2026.01.07
 TERMUX_PKG_SRCURL=git+https://github.com/KelvinShadewing/brux-gdk.git
 TERMUX_PKG_GIT_BRANCH=main
 TERMUX_PKG_DEPENDS="sdl2, sdl2-image, sdl2-net, sdl2-mixer, libcurl, libphysfs, sdl2-gfx, libgit2, libc++, squirrel3, simplesquirrel"
+TERMUX_PKG_BUILD_DEPENDS="cmake"
 termux_step_post_get_source() {
 	git submodule update --init --recursive
 }
@@ -57,7 +58,6 @@ open('rte/meson.build', 'w').write(content)
 }
 
 termux_step_configure() {
-	termux_setup_cmake
 	termux_setup_meson
 	$TERMUX_MESON setup $TERMUX_PKG_BUILDDIR $TERMUX_PKG_SRCDIR/rte \
 		--cross-file $TERMUX_MESON_CROSSFILE \
