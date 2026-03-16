@@ -14,7 +14,7 @@ termux_step_make_install() {
 	local INSTALL_DIR=$TERMUX_PREFIX/share/supertux-advance
 	mkdir -p $INSTALL_DIR
 	cp -a $TERMUX_PKG_SRCDIR/* $INSTALL_DIR/
-	
+
 	mkdir -p $TERMUX_PREFIX/bin
 	cat > $TERMUX_PREFIX/bin/supertux-advance <<- EOF
 		#!$TERMUX_PREFIX/bin/sh
