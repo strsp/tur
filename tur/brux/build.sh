@@ -19,10 +19,10 @@ content = open('rte/meson.build').read()
 # Replace physfs block
 # Note: cat -A showed tabs in the original file
 physfs_old = '''if (not physfs.found())
-        physfs_proj = cmake.subproject('physfs')
+		physfs_proj = cmake.subproject('physfs')
 
-        physfs_lib = physfs_proj.get_variable('physfs')
-        physfs = declare_dependency(link_with: physfs_lib, include_directories: physfs_proj.include_directories('physfs'))
+		physfs_lib = physfs_proj.get_variable('physfs')
+		physfs = declare_dependency(link_with: physfs_lib, include_directories: physfs_proj.include_directories('physfs'))
 endif'''
 content = content.replace(\"physfs = dependency('physfs', required: false)\", \"physfs = dependency('physfs', required: true)\")
 content = content.replace(physfs_old, '')
@@ -30,17 +30,17 @@ content = content.replace(physfs_old.replace('        ', '\t'), '')
 
 # Replace simplesquirrel block
 ssq_old = '''if (not simplesquirrel.found())
-        opts = cmake.subproject_options()
+		opts = cmake.subproject_options()
 
-        opts.add_cmake_defines({'CMAKE_POLICY_VERSION_MINIMUM': '3.5', 'SSQ_USE_SQ_SUBMODULE': true})
+		opts.add_cmake_defines({'CMAKE_POLICY_VERSION_MINIMUM': '3.5', 'SSQ_USE_SQ_SUBMODULE': true})
 
-        simplesquirrel_proj = cmake.subproject('simplesquirrel', options: opts)
+		simplesquirrel_proj = cmake.subproject('simplesquirrel', options: opts)
 
-        simplesquirrel_lib = simplesquirrel_proj.get_variable('simplesquirrel_static')
-        squirrel_lib = simplesquirrel_proj.get_variable('squirrel_static')
-        sqstdlib = simplesquirrel_proj.get_variable('sqstdlib_static')
+		simplesquirrel_lib = simplesquirrel_proj.get_variable('simplesquirrel_static')
+		squirrel_lib = simplesquirrel_proj.get_variable('squirrel_static')
+		sqstdlib = simplesquirrel_proj.get_variable('sqstdlib_static')
 
-        simplesquirrel = declare_dependency(link_with: [simplesquirrel_lib, squirrel_lib, sqstdlib], include_directories: simplesquirrel_proj.include_directories('simplesquirrel_static'))
+		simplesquirrel = declare_dependency(link_with: [simplesquirrel_lib, squirrel_lib, sqstdlib], include_directories: simplesquirrel_proj.include_directories('simplesquirrel_static'))
 endif'''
 ssq_new = '''cpp = meson.get_compiler('cpp')
 simplesquirrel_lib = cpp.find_library('simplesquirrel', required: true)
