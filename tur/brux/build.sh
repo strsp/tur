@@ -57,6 +57,7 @@ open('rte/meson.build', 'w').write(content)
 }
 
 termux_step_configure() {
+	termux_setup_cmake
 	termux_setup_meson
 	$TERMUX_MESON setup $TERMUX_PKG_BUILDDIR $TERMUX_PKG_SRCDIR/rte \
 		--cross-file $TERMUX_MESON_CROSSFILE \
