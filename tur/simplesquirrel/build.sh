@@ -11,6 +11,7 @@ TERMUX_PKG_AUTO_UPDATE=false
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="-DSSQ_USE_SQ_SUBMODULE=OFF"
 
 termux_step_pre_configure() {
+	termux_setup_cmake
 	# Ensure it uses system squirrel
 	sed -i 's/add_subdirectory("libs\/squirrel")/#add_subdirectory("libs\/squirrel")/' CMakeLists.txt
 	# Fix SQUIRREL_INCLUDE_DIR when not using submodule
