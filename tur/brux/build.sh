@@ -63,6 +63,7 @@ open('rte/meson.build', 'w').write(content)
 termux_step_configure() {
 	export TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" -DCMAKE_ANDROID_STANDALONE_TOOLCHAIN=$TERMUX_STANDALONE_TOOLCHAIN"
 	termux_setup_meson
+	termux_setup_ninja
 	$TERMUX_MESON setup $TERMUX_PKG_BUILDDIR $TERMUX_PKG_SRCDIR/rte \
 		--cross-file $TERMUX_MESON_CROSSFILE \
 		--prefix $TERMUX_PREFIX \
