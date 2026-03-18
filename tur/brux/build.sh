@@ -8,7 +8,7 @@ TERMUX_PKG_GIT_BRANCH=main
 TERMUX_PKG_DEPENDS="sdl2, sdl2-image, sdl2-net, sdl2-mixer, libcurl, libphysfs, sdl2-gfx, libgit2, libc++, squirrel3, simplesquirrel"
 #TERMUX_PKG_BUILD_DEPENDS="cmake, make"
 TERMUX_PKG_FORCE_CMAKE=true
-TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" -DCMAKE_ANDROID_STANDALONE_TOOLCHAIN=$TERMUX_STANDALONE_TOOLCHAIN"
+
 termux_step_post_get_source() {
 	git submodule update --init --recursive
 }
@@ -61,6 +61,7 @@ open('rte/meson.build', 'w').write(content)
 }
 
 termux_step_configure() {
+	export TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" -DCMAKE_ANDROID_STANDALONE_TOOLCHAIN=$TERMUX_STANDALONE_TOOLCHAIN"
 	termux_setup_meson
 	$TERMUX_MESON setup $TERMUX_PKG_BUILDDIR $TERMUX_PKG_SRCDIR/rte \
 		--cross-file $TERMUX_MESON_CROSSFILE \
