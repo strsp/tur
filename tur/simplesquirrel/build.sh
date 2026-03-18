@@ -12,7 +12,7 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="-DSSQ_USE_SQ_SUBMODULE=OFF"
 
 termux_step_pre_configure() {
 	export TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" -DCMAKE_ANDROID_STANDALONE_TOOLCHAIN=$TERMUX_STANDALONE_TOOLCHAIN"
-	termux_setup_cmake
+	termux_setup_ninja
 	# Ensure it uses system squirrel
 	sed -i 's/add_subdirectory("libs\/squirrel")/#add_subdirectory("libs\/squirrel")/' CMakeLists.txt
 	# Fix SQUIRREL_INCLUDE_DIR when not using submodule
