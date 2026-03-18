@@ -15,6 +15,9 @@ termux_step_post_get_source() {
 
 termux_step_pre_configure() {
 	termux_setup_cmake
+	termux_setup_ninja
+	export TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" -DCMAKE_ANDROID_STANDALONE_TOOLCHAIN=$TERMUX_STANDALONE_TOOLCHAIN"
+	termux_setup_meson
 	# Force using system dependencies instead of problematic CMake subprojects
 	python3 -c "
 import sys
@@ -61,9 +64,6 @@ open('rte/meson.build', 'w').write(content)
 }
 
 termux_step_configure() {
-	export TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" -DCMAKE_ANDROID_STANDALONE_TOOLCHAIN=$TERMUX_STANDALONE_TOOLCHAIN"
-	termux_setup_meson
-	termux_setup_ninja
 	$TERMUX_MESON setup $TERMUX_PKG_BUILDDIR $TERMUX_PKG_SRCDIR/rte \
 		--cross-file $TERMUX_MESON_CROSSFILE \
 		--prefix $TERMUX_PREFIX \
