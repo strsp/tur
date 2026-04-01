@@ -8,9 +8,9 @@ TERMUX_PKG_SHA256="89c36b0714b8ba9f97672292fadd69c35a501e3e559c133c7cb50c4e00700
 TERMUX_PKG_BUILD_IN_SRC=true
 
 termux_step_make() {
-    $CC $CFLAGS $CPPFLAGS cork.c -o cork $LDFLAGS
+	$CC $CFLAGS $CPPFLAGS cork.c -o cork $LDFLAGS
 }
 
 termux_step_make_install() {
-    install -Dm755 cork $TERMUX_PREFIX/bin/cork
+	install -Dm755 cork $TERMUX_PREFIX/bin/cork
 }
