@@ -1,5 +1,5 @@
 TERMUX_PKG_HOMEPAGE=https://github.com/SurgeDM/Surge
-TERMUX_PKG_DESCRIPTION="Blazing	fast TUI download manager built	in Go for power	users"
+TERMUX_PKG_DESCRIPTION="Blazing fast TUI download manager built	in Go for power	users"
 TERMUX_PKG_LICENSE="MIT"
 TERMUX_PKG_MAINTAINER="@LukeGTH"
 TERMUX_PKG_VERSION=0.8.0
