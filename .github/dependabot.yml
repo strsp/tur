@@ -9,4 +9,6 @@ updates:
         patterns:
           - "*"
     rebase-strategy: "auto"
+    reviewers:
+      - "strsp/core-dev"
     open-pull-requests-limit: 5
